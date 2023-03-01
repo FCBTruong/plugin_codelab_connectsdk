@@ -26,4 +26,8 @@ abstract class PluginCodelabPlatform extends PlatformInterface {
   Future<String?> getPlatformVersion() {
     throw UnimplementedError('platformVersion() has not been implemented.');
   }
+
+   Future<String?> getAllDevices() {
+    throw UnimplementedError('getAllDevices() has not been implemented.');
+  }
 }

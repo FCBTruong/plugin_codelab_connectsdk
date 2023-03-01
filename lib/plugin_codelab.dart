@@ -5,4 +5,8 @@ class PluginCodelab {
   Future<String?> getPlatformVersion() {
     return PluginCodelabPlatform.instance.getPlatformVersion();
   }
+
+   Future<String?> getAllDevices() {
+    return PluginCodelabPlatform.instance.getAllDevices();
+  }
 }

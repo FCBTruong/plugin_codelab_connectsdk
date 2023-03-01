@@ -18,7 +18,7 @@ public class PluginCodelabPlugin implements FlutterPlugin, MethodCallHandler {
 
   @Override
   public void onAttachedToEngine(@NonNull FlutterPluginBinding flutterPluginBinding) {
-    channel = new MethodChannel(flutterPluginBinding.getBinaryMessenger(), "plugin_codelab_test");
+    channel = new MethodChannel(flutterPluginBinding.getBinaryMessenger(), "discovery");
     channel.setMethodCallHandler(this);
   }
 
@@ -26,7 +26,11 @@ public class PluginCodelabPlugin implements FlutterPlugin, MethodCallHandler {
   public void onMethodCall(@NonNull MethodCall call, @NonNull Result result) {
     if (call.method.equals("getPlatformVersion")) {
       result.success("Android " + android.os.Build.VERSION.RELEASE);
-    } else {
+    }
+    else if(call.method.equals("getAllDevices")) {
+      result.success("Something works on android");
+    } 
+    else {
       result.notImplemented();
     }
   }

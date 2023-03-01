@@ -7,11 +7,17 @@ import 'plugin_codelab_platform_interface.dart';
 class MethodChannelPluginCodelab extends PluginCodelabPlatform {
   /// The method channel used to interact with the native platform.
   @visibleForTesting
-  final methodChannel = const MethodChannel('plugin_codelab_test');
+  final methodChannel = const MethodChannel('discovery');
 
   @override
   Future<String?> getPlatformVersion() async {
     final version = await methodChannel.invokeMethod<String>('getPlatformVersion');
+    return version;
+  }
+
+    @override
+  Future<String?> getAllDevices() async {
+    final version = await methodChannel.invokeMethod<String>('getAllDevices');
     return version;
   }
 }
