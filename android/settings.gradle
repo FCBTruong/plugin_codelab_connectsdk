@@ -1,0 +1,2 @@
+rootProject.name = 'plugin_codelab'
+include ':app', ':Connect-SDK-Android'
