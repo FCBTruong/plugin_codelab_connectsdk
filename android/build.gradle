@@ -33,3 +33,8 @@ android {
         minSdkVersion 16
     }
 }
+
+dependencies {
+    implementation files('tmplibs\\flutter.jar')
+    implementation 'androidx.annotation:annotation:1.1.0'
+}
