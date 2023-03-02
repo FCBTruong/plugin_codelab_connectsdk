@@ -15,9 +15,15 @@ class MethodChannelPluginCodelab extends PluginCodelabPlatform {
     return version;
   }
 
-    @override
+   @override
   Future<String?> getAllDevices() async {
     final version = await methodChannel.invokeMethod<String>('getAllDevices');
+    return version;
+  }
+
+  @override
+  Future<String?> initDiscoveryManager() async {
+    final version = await methodChannel.invokeMethod<String>('initDiscoveryManager');
     return version;
   }
 }

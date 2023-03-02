@@ -1,0 +1,5 @@
+rootProject.name = 'plugin_codelab'
+
+include ':Connect-SDK-Android'
+
+project(':Connect-SDK-Android').projectDir = file('android/Connect-SDK-Android')

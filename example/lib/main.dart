@@ -18,6 +18,7 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
   String _platformVersion = 'Unknown';
   final _pluginCodelabPlugin = PluginCodelab();
+  String _numDevices = "0";
 
   @override
   void initState() {
@@ -28,13 +29,14 @@ class _MyAppState extends State<MyApp> {
   // Platform messages are asynchronous, so we initialize in an async method.
   Future<void> initPlatformState() async {
     String platformVersion;
+    String numDevices;
     // Platform messages may fail, so we use a try/catch PlatformException.
     // We also handle the message potentially returning null.
     try {
-      platformVersion =
+      numDevices =
           await _pluginCodelabPlugin.getAllDevices() ?? 'Unknown platform version';
     } on PlatformException {
-      platformVersion = 'Failed to get platform version.';
+      numDevices = 'Failed to get Devices.';
     }
 
     // If the widget was removed from the tree while the asynchronous platform
@@ -43,7 +45,7 @@ class _MyAppState extends State<MyApp> {
     if (!mounted) return;
 
     setState(() {
-      _platformVersion = platformVersion;
+      _numDevices = numDevices;
     });
   }
 
@@ -55,7 +57,7 @@ class _MyAppState extends State<MyApp> {
           title: const Text('Plugin example app'),
         ),
         body: Center(
-          child: Text('Running on: $_platformVersion\n'),
+          child: Text('Number of TV detected: $_numDevices\n'),
         ),
       ),
     );
