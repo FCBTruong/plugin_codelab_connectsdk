@@ -18,7 +18,7 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
   String _platformVersion = 'Unknown';
   final _pluginCodelabPlugin = PluginCodelab();
-  String _numDevices = "0";
+  String _numDevices = "null.";
 
   @override
   void initState() {
