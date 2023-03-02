@@ -10,6 +10,10 @@ class PluginCodelab {
     return PluginCodelabPlatform.instance.getNumberDevices();
   }
 
+  Future<String?> getAllDevices() {
+    return PluginCodelabPlatform.instance.getAllDevices();
+  }
+
   Future<void> initDiscoveryManager() {
     return PluginCodelabPlatform.instance.initDiscoveryManager();
   }
