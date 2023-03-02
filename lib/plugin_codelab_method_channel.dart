@@ -28,8 +28,7 @@ class MethodChannelPluginCodelab extends PluginCodelabPlatform {
   }
 
   @override
-  Future<String?> initDiscoveryManager() async {
-    final version = await methodChannel.invokeMethod<String>('initDiscoveryManager');
-    return version;
+  Future<void> initDiscoveryManager() async {
+    await methodChannel.invokeMethod<void>('initDiscoveryManager');
   }
 }

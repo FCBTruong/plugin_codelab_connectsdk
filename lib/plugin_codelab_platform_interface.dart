@@ -35,7 +35,7 @@ abstract class PluginCodelabPlatform extends PlatformInterface {
     throw UnimplementedError('getNumberDevices() has not been implemented.');
   }
 
-   Future<String?> initDiscoveryManager() {
+   Future<void> initDiscoveryManager() {
     throw UnimplementedError('initDiscoveryManager() has not been implemented.');
   }
 }

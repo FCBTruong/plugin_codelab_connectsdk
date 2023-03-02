@@ -53,12 +53,6 @@ public class PluginCodelabPlugin
   public void onAttachedToEngine(
     @NonNull FlutterPluginBinding flutterPluginBinding
   ) {
-    DiscoveryManager.init(getApplicationContext());
-    mDiscoveryManager = DiscoveryManager.getInstance();
-    mDiscoveryManager.registerDefaultDeviceTypes();
-    mDiscoveryManager.setPairingLevel(PairingLevel.ON);
-    DiscoveryManager.getInstance().start();
-
     channel =
       new MethodChannel(flutterPluginBinding.getBinaryMessenger(), "discovery");
     channel.setMethodCallHandler(this);
@@ -75,7 +69,7 @@ public class PluginCodelabPlugin
 
       Map<String, ConnectableDevice> devices = mDiscoveryManager.getAllDevices();
 
-      result.success(Integer.toString(devices.size()));
+      result.success("hix");
     } else if (call.method.equals("getAllDevices")) {
       List<ConnectableDevice> imageDevices = new ArrayList<ConnectableDevice>();
       for (ConnectableDevice device : DiscoveryManager
@@ -86,7 +80,14 @@ public class PluginCodelabPlugin
       }
 
       result.success(imageDevices);
-    } else if (call.method.equals("initDiscoveryManager")) {} else {
+    } else if (call.method.equals("initDiscoveryManager")) {
+      DiscoveryManager.init(getApplicationContext());
+      mDiscoveryManager = DiscoveryManager.getInstance();
+      mDiscoveryManager.registerDefaultDeviceTypes();
+      mDiscoveryManager.setPairingLevel(PairingLevel.ON);
+      DiscoveryManager.getInstance().start();
+      result.success(0);
+    } else {
       result.notImplemented();
     }
   }
