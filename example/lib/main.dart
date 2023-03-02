@@ -24,11 +24,10 @@ class _MyAppState extends State<MyApp> {
   @override
   void initState() {
     super.initState();
-    initPlatformState();
   }
 
   // Platform messages are asynchronous, so we initialize in an async method.
-  Future<void> initPlatformState() async {
+  Future<void> _test() async {
     String numDevices;
     // Platform messages may fail, so we use a try/catch PlatformException.
     // We also handle the message potentially returning null.
@@ -60,6 +59,11 @@ class _MyAppState extends State<MyApp> {
         ),
         body: Center(
           child: Text('Number of TV detected: $_numDevices\n'),
+        ),
+        floatingActionButton: FloatingActionButton(
+          onPressed: _test,
+          tooltip: 'Increment',
+          child: const Icon(Icons.add),
         ),
       ),
     );

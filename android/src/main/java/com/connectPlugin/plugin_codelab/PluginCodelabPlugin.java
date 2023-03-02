@@ -1,6 +1,7 @@
 package com.connectPlugin.plugin_codelab;
 
 import android.app.AlertDialog;
+import android.app.Application;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.os.Bundle;
@@ -36,10 +37,11 @@ import io.flutter.plugin.common.MethodChannel.Result;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import com.connectsdk.service.DIALService;
 
 /** PluginCodelabPlugin */
 public class PluginCodelabPlugin
-  extends FlutterActivity
+  extends Application
   implements FlutterPlugin, MethodCallHandler {
 
   /// The MethodChannel that will the communication between Flutter and native Android
@@ -48,6 +50,13 @@ public class PluginCodelabPlugin
   /// when the Flutter Engine is detached from the Activity
   private MethodChannel channel;
   private DiscoveryManager mDiscoveryManager;
+
+  @Override
+  public void onCreate() {
+    DIALService.registerApp("Levak");
+    DiscoveryManager.init(getApplicationContext());
+    super.onCreate();
+  }
 
   @Override
   public void onAttachedToEngine(
