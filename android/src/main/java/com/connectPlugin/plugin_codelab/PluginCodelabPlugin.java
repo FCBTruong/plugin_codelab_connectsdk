@@ -8,6 +8,17 @@ import io.flutter.plugin.common.MethodChannel;
 import io.flutter.plugin.common.MethodChannel.MethodCallHandler;
 import io.flutter.plugin.common.MethodChannel.Result;
 
+import com.connectsdk.device.ConnectableDevice;
+import com.connectsdk.device.ConnectableDeviceListener;
+import com.connectsdk.device.DevicePicker;
+import com.connectsdk.discovery.DiscoveryManager;
+import com.connectsdk.discovery.DiscoveryManager.PairingLevel;
+import com.connectsdk.discovery.DiscoveryProvider;
+import com.connectsdk.service.DeviceService;
+import com.connectsdk.service.DeviceService.PairingType;
+import com.connectsdk.service.capability.MediaPlayer;
+import com.connectsdk.service.command.ServiceCommandError;
+
 /** PluginCodelabPlugin */
 public class PluginCodelabPlugin implements FlutterPlugin, MethodCallHandler {
   /// The MethodChannel that will the communication between Flutter and native Android

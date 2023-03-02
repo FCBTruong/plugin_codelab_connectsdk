@@ -1,6 +1,5 @@
 group 'com.connectPlugin.plugin_codelab'
 version '1.0'
-
 buildscript {
     repositories {
         google()
@@ -35,6 +34,6 @@ android {
 }
 
 dependencies {
-    implementation files('tmplibs\\flutter.jar')
     implementation 'androidx.annotation:annotation:1.1.0'
+    implementation(project(':Connect-SDK-Android'))
 }

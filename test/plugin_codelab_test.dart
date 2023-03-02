@@ -26,4 +26,11 @@ void main() {
 
     expect(await pluginCodelabPlugin.getPlatformVersion(), '42');
   });
+    test('getAllDevices', () async {
+    PluginCodelab pluginCodelabPlugin = PluginCodelab();
+    MockPluginCodelabPlatform fakePlatform = MockPluginCodelabPlatform();
+    PluginCodelabPlatform.instance = fakePlatform;
+
+    expect(await pluginCodelabPlugin.getAllDevices(), '42');
+  });
 }
