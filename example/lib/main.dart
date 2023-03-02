@@ -34,7 +34,7 @@ class _MyAppState extends State<MyApp> {
     // We also handle the message potentially returning null.
     try {
       numDevices =
-          await _pluginCodelabPlugin.getAllDevices() ?? 'Unknown platform version';
+          await _pluginCodelabPlugin.getNumberDevices() ?? 'Unknown platform version';
     } on PlatformException {
       numDevices = 'Failed to get Devices.';
     }
