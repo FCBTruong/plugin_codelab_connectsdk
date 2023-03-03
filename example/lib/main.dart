@@ -32,11 +32,8 @@ class _MyAppState extends State<MyApp> {
     // Platform messages may fail, so we use a try/catch PlatformException.
     // We also handle the message potentially returning null.
     try {
-      debugPrint("await...");
-      await _pluginCodelabPlugin.initDiscoveryManager();
-      debugPrint("await..dd.");
       numDevices = await _pluginCodelabPlugin.getNumberDevices() ??
-          'Unknown platform version';
+          'Unknown TV devices';
     } on PlatformException {
       numDevices = 'Failed to get Devices.';
     }

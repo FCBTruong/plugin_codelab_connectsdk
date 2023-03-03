@@ -23,6 +23,7 @@ import com.connectsdk.device.DevicePicker;
 import com.connectsdk.discovery.DiscoveryManager;
 import com.connectsdk.discovery.DiscoveryManager.PairingLevel;
 import com.connectsdk.discovery.DiscoveryProvider;
+import com.connectsdk.service.DIALService;
 import com.connectsdk.service.DeviceService;
 import com.connectsdk.service.DeviceService.PairingType;
 import com.connectsdk.service.capability.MediaPlayer;
@@ -37,7 +38,6 @@ import io.flutter.plugin.common.MethodChannel.Result;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-import com.connectsdk.service.DIALService;
 
 /** PluginCodelabPlugin */
 public class PluginCodelabPlugin
@@ -53,8 +53,7 @@ public class PluginCodelabPlugin
 
   @Override
   public void onCreate() {
-    DIALService.registerApp("Levak");
-    DiscoveryManager.init(getApplicationContext());
+    System.out.println("on Create");
     super.onCreate();
   }
 
@@ -65,6 +64,13 @@ public class PluginCodelabPlugin
     channel =
       new MethodChannel(flutterPluginBinding.getBinaryMessenger(), "discovery");
     channel.setMethodCallHandler(this);
+    Context context = flutterPluginBinding.getApplicationContext();
+    DIALService.registerApp("Levak");
+    DiscoveryManager.init(context);
+    mDiscoveryManager = DiscoveryManager.getInstance();
+    mDiscoveryManager.registerDefaultDeviceTypes();
+    mDiscoveryManager.setPairingLevel(PairingLevel.ON);
+    DiscoveryManager.getInstance().start();
   }
 
   @Override
@@ -78,7 +84,7 @@ public class PluginCodelabPlugin
 
       Map<String, ConnectableDevice> devices = mDiscoveryManager.getAllDevices();
 
-      result.success("hix");
+      result.success(Integer.toString(devices.size()));
     } else if (call.method.equals("getAllDevices")) {
       List<ConnectableDevice> imageDevices = new ArrayList<ConnectableDevice>();
       for (ConnectableDevice device : DiscoveryManager
@@ -90,11 +96,6 @@ public class PluginCodelabPlugin
 
       result.success(imageDevices);
     } else if (call.method.equals("initDiscoveryManager")) {
-      DiscoveryManager.init(getApplicationContext());
-      mDiscoveryManager = DiscoveryManager.getInstance();
-      mDiscoveryManager.registerDefaultDeviceTypes();
-      mDiscoveryManager.setPairingLevel(PairingLevel.ON);
-      DiscoveryManager.getInstance().start();
       result.success(0);
     } else {
       result.notImplemented();

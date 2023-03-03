@@ -37,7 +37,6 @@ flutter:
       android:
         package: com.connectPlugin.plugin_codelab
         pluginClass: PluginCodelabPlugin
-        mainClass: MainActivity
       ios:
         pluginClass: PluginCodelabPlugin
 
