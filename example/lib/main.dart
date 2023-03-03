@@ -24,6 +24,7 @@ class _MyAppState extends State<MyApp> {
   @override
   void initState() {
     super.initState();
+    _test(); // get number of devices detected
   }
 
   // Platform messages are asynchronous, so we initialize in an async method.
