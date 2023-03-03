@@ -4,6 +4,15 @@ A new Flutter plugin project.
 
 ## Getting Started
 
+### Download Connect-Android-SDK
+Move to "android" folder
+* cd android
+* git clone https://github.com/ConnectSDK/Connect-SDK-Android.git
+
+### Test DiscoveryManager
+* Run example application, already have a test (main.dart) cd example -> flutter run
+* API getNumberDevices() should return a number of devices detected
+
 This project is a starting point for a Flutter
 [plug-in package](https://flutter.dev/developing-packages/),
 a specialized package that includes platform-specific implementation code for
