@@ -1,4 +1,3 @@
-
 import 'plugin_codelab_platform_interface.dart';
 
 class PluginCodelab {
@@ -16,5 +15,13 @@ class PluginCodelab {
 
   Future<void> initDiscoveryManager() {
     return PluginCodelabPlatform.instance.initDiscoveryManager();
+  }
+
+  Future<void> setupPicker() {
+    return PluginCodelabPlatform.instance.setupPicker();
+  }
+
+  Future<void> getPickerDialog() {
+    return PluginCodelabPlatform.instance.getPickerDialog();
   }
 }

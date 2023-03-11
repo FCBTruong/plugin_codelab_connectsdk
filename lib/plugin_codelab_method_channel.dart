@@ -11,17 +11,18 @@ class MethodChannelPluginCodelab extends PluginCodelabPlatform {
 
   @override
   Future<String?> getPlatformVersion() async {
-    final version = await methodChannel.invokeMethod<String>('getPlatformVersion');
+    final version =
+        await methodChannel.invokeMethod<String>('getPlatformVersion');
     return version;
   }
 
-   @override
+  @override
   Future<String?> getAllDevices() async {
     final version = await methodChannel.invokeMethod<String>('getAllDevices');
     return version;
   }
 
-     @override
+  @override
   Future<String?> getNumberDevices() async {
     final number = await methodChannel.invokeMethod<String>('getNumberDevices');
     return number;
@@ -30,5 +31,15 @@ class MethodChannelPluginCodelab extends PluginCodelabPlatform {
   @override
   Future<void> initDiscoveryManager() async {
     await methodChannel.invokeMethod<void>('initDiscoveryManager');
+  }
+
+  @override
+  Future<void> setupPicker() async {
+    await methodChannel.invokeMethod<void>('setupPicker');
+  }
+
+  @override
+  Future<void> getPickerDialog() async {
+    await methodChannel.invokeMethod<void>('getPickerDialog');
   }
 }

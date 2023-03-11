@@ -17,7 +17,6 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  String _platformVersion = 'Unknown';
   final _pluginCodelabPlugin = PluginCodelab();
   String _numDevices = "null.";
 
@@ -33,8 +32,8 @@ class _MyAppState extends State<MyApp> {
     // Platform messages may fail, so we use a try/catch PlatformException.
     // We also handle the message potentially returning null.
     try {
-      numDevices = await _pluginCodelabPlugin.getNumberDevices() ??
-          'Unknown TV devices';
+      numDevices =
+          await _pluginCodelabPlugin.getNumberDevices() ?? 'Unknown TV devices';
     } on PlatformException {
       numDevices = 'Failed to get Devices.';
     }
@@ -48,21 +47,50 @@ class _MyAppState extends State<MyApp> {
     });
   }
 
+  Future<void> _setupPicker() async {
+    try {
+      await _pluginCodelabPlugin.setupPicker();
+    } on PlatformException {}
+  }
+
+  Future<void> _getPickerDialog() async {
+    try {
+      await _pluginCodelabPlugin.getPickerDialog();
+    } on PlatformException {}
+  }
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(
-          title: const Text('Plugin example app'),
+          title: Text('Number of TV detected: $_numDevices'),
         ),
         body: Center(
-          child: Text('Number of TV detected: $_numDevices\n'),
-        ),
-        floatingActionButton: FloatingActionButton(
-          onPressed: _test,
-          tooltip: 'Increment',
-          child: const Icon(Icons.add),
-        ),
+            child: Stack(children: [
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              TextButton(
+                style: TextButton.styleFrom(
+                    primary: Colors.white, backgroundColor: Colors.blue),
+                onPressed: _setupPicker,
+                child: Text('setupPicker'),
+              ),
+              TextButton(
+                style: TextButton.styleFrom(
+                    primary: Colors.white, backgroundColor: Colors.blue),
+                onPressed: () => {},
+                child: Text('.'),
+              ),
+            ],
+          ),
+          Align(
+            alignment: Alignment.bottomCenter,
+            child:
+                Text("notification here", style: TextStyle(color: Colors.red)),
+          )
+        ])),
       ),
     );
   }
